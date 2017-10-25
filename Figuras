@@ -1,0 +1,221 @@
+Figura Pau;
+Figura Gar;
+Figura Un;
+Figura Deux;
+Figura Trois;
+Figura Cuatre;
+Figura Cinc;
+Figura Six;
+
+ 
+void setup(){
+  size(400,400);
+  background(255);
+  
+  Pau = new Triangulo(50,100,30);
+  Gar = new Cuadro (100,100,80);
+  Un = new Rectangulo (150,100,15,25);
+  Deux = new Circulo(200,100,30);
+  Trois = new Pentagono(250,100,30);
+  Cuatre = new Hexagono(300,100,30);
+  Cinc = new Heptagono(150,300,30);
+  Six = new Octagono(300, 300, 30);
+}
+
+void draw(){
+  /* println ("Pau", Pau.area(),"-", Pau.perimetro());
+  println ("Gar", Gar.area(),"-", Gar.perimetro());
+  println ("Un", Un.area(),"-", Un.perimetro());
+  println ("Deux", Deux.area(),"-", Deux.perimetro());
+  println ("Trois", Trois.area(),"-", Trois.perimetro());
+  println ("Cuatre", Cuatre.area(),"-", Cuatre.perimetro());
+  println ("Cinc", Cinc.area(),"-", Cinc.perimetro());
+  println ("Six", Six.area(),"-", Six.perimetro()); */
+   
+   rectMode(CENTER);
+   fill(60);
+   noStroke();
+   Pau.display();
+   Gar.display();
+   Un.display();
+   Deux.display();
+   Trois.display();
+   Cuatre.display();
+   Cinc.display();
+   Six.display();
+}
+
+
+void polygon(float px, float py, float radius, int npoints) {
+  float angle = TWO_PI / npoints;
+  beginShape();
+  for (float a = 0; a < TWO_PI; a += angle) {
+    float sx = px + cos(a) * radius;
+    float sy = py + sin(a) * radius;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}//polygon
+
+
+
+interface Figura{
+  float perimetro();
+  float area();
+  void display();
+}
+
+class Triangulo implements Figura{
+  int b;
+  int x,y;
+  
+  Triangulo(int x_, int y_, int b_){
+    x = x_;
+    y = y_;
+    b = b_;
+  }
+ float angle = 360/3;
+ float h = sqrt((b*b)-(b/2*b/2));
+ float r = (b/2)/sin (angle/2);
+ float perimetro(){return b*3;}
+ float area(){return (b*h)/2;}
+ void display(){
+   polygon(x,y,30,3);
+ }
+}//triangulo
+
+class Cuadro implements Figura{
+  int c;
+  int x,y;
+  
+  Cuadro(int x_, int y_, int c_){
+    x = x_;
+    y = y_;
+    c = c_;
+  }
+  float r = c *sin(45);
+  
+  float perimetro(){return c*4;}
+  float area(){return c*c;}
+
+   void display(){
+   polygon(x,y,r,4);
+ }
+}
+
+class Rectangulo implements Figura{
+  int b,h;
+  int x,y;
+  
+  Rectangulo(int x_, int y_, int b_, int h_){
+    x = x_;
+    y = y_;
+    b = b_;
+    h = h_;
+  }
+  
+  float r = sqrt((b/2)^2 + (h/2)^2); 
+  float perimetro(){return 2*b + 2*h;}
+  float area(){return b*h;}
+   void display(){
+   rect(x,y,b,h);
+ }
+}//Rect
+
+class Circulo implements Figura{
+  int r;
+  int x,y;
+  
+  Circulo(int x_, int y_, int r_){
+    x = x_;
+    y = y_;
+    r = r_;
+  }
+  
+  float perimetro(){return 2*PI*r;}
+  float area(){return PI*r*r;}
+   void display(){
+   ellipse(x,y,r,r);
+ }
+}//Circ
+
+
+class Pentagono implements Figura{
+  float l;
+  int x,y;
+  
+  Pentagono(int x_, int y_, float l_){
+    x = x_;
+    y = y_;
+    l = l_;
+  }
+  float angle = 360/5;
+  float ap =  l/2*tan(angle/2);
+  float r = (l/2)/(sin(angle/2));
+  
+  float perimetro(){return 5*l;}
+  float area(){return (5*l*ap)/2;}
+   void display(){
+   polygon(x,y,r,5);
+ }
+}//Pent
+
+class Hexagono implements Figura{
+  int l;
+  int x,y;
+  
+  Hexagono(int x_, int y_, int l_){
+    x = x_;
+    y = y_;
+    l = l_;
+  }
+  float angle = 360/6;
+  float ap =  l/2*tan(angle/2);
+  float r = (l/2)/(sin(angle/2));
+  
+  float perimetro(){return 6*l;}
+  float area(){return (6*l*ap)/2;}
+   void display(){
+   polygon(x,y,r,6);
+ }
+}//Pent
+
+class Heptagono implements Figura{
+  int l;
+  int x,y;
+  
+  Heptagono(int x_, int y_, int l_){
+    x = x_;
+    y = y_;
+    l = l_;
+  }
+  float angle = 360/7;
+  float ap =  l/2*tan(angle/2);
+  float r = (l/2)/(sin(angle/2));
+  
+  float perimetro(){return 7*l;}
+  float area(){return (7*l*ap)/2;}
+   void display(){
+   polygon(x,y,r,7);
+ }
+}//Pent
+
+class Octagono implements Figura{
+  int l;
+  int x,y;
+  
+  Octagono(int x_, int y_, int l_){
+    x = x_;
+    y = y_;
+    l = l_;
+  }
+  float angle = 360/5;
+  float ap =  l/2*tan(angle/2);
+  float r = (l/2)/(sin(angle/2));
+  
+  float perimetro(){return 8*l;}
+  float area(){return (8*l*ap)/2;}
+   void display(){
+   polygon(x,y,r,8);
+ }
+}//Pent
